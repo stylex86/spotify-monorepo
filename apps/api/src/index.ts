@@ -8,7 +8,7 @@ dotenv.config();
 const app: FastifyInstance = fastify({ logger: true });
 
 app.register(fastifyCookie);
-app.register(albumRoute);
+app.register(albumRoute, { prefix: '/api/v1' });
 
 // Declara una ruta
 app.get('/', function (request, reply) {
