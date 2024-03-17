@@ -1,10 +1,15 @@
 {
+  "name": "api-fastify",
+  "version": "1.0.0",
+  "description": "proyecto que recopila información de la api spotify y se encarga de enviar los resultados, entre algunas acciones",
+  "author": "Williams Paredes Silva",
   "scripts": {
     "start": "tsc && node build/index.js",
     "dev": "nodemon --watch src src/index.ts",
     "build": "tsc -p tsconfig.json"
   },
   "dependencies": {
+    "@fastify/cookie": "^9.3.1",
     "@fastify/oauth2": "^7.8.0",
     "@types/dotenv": "^8.2.0",
     "axios": "^1.6.8",
