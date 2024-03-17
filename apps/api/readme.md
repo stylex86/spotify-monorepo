@@ -20,13 +20,13 @@ Esta es una aplicación desarrollada con Node.js y el framework Fastify, diseña
 Clona este repositorio en tu máquina local
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/stylex86/spotify-monorepo.git
 ```
 
-Go to the project directory
+Abrir proyecto
 
 ```bash
-  cd my-project
+  cd spotify-monorepo
 ```
 
 Instala las dependencias del proyecto
