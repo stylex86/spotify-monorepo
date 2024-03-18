@@ -12,7 +12,7 @@ interface TokenResponse {
 export async function getToken() {
   try {
     const response = await axios.post(
-        `${process.env.URL_SPOTIFY}`,
+        `${process.env.URL_SPOTIFY_TOKEN}`,
         new URLSearchParams({
             'grant_type': 'client_credentials',
         }),

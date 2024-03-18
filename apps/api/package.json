@@ -14,7 +14,8 @@
     "@types/dotenv": "^8.2.0",
     "axios": "^1.6.8",
     "dotenv": "^16.4.5",
-    "fastify": "^4.26.2"
+    "fastify": "^4.26.2",
+    "mongoose": "^8.2.2"
   },
   "devDependencies": {
     "@types/node": "^20.11.28",
