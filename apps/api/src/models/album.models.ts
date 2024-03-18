@@ -7,7 +7,7 @@ const imageSchema = new Schema({
 });
 
 const albumSchema = new Schema({
-    id: String,
+    idAlbum: String,
     name: String,
     total_tracks: Number,
     favorite: Boolean,
