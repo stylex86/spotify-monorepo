@@ -35,3 +35,16 @@ Clona este repositorio en tu máquina local
 ```
 
 ## Descarga las imágenes de `Docker HUB`
+
+### API
+```bash
+  https://hub.docker.com/r/wparedes/spotify-monorepo-api
+```
+### Mongo
+```bash
+  https://hub.docker.com/r/wparedes/spotify-monorepo-mongo
+```
+### Client
+```bash
+  https://hub.docker.com/r/wparedes/spotify-monorepo-client
+```
