@@ -29,6 +29,7 @@ export const getAlbumesBusqueda = async (request: FastifyRequest<{ Querystring: 
                     artist: artist,
                     name: albumData.name,
                     total_tracks: albumData.total_tracks,
+                    release_date: albumData.release_date,
                     favorite: false,
                     images: albumData.images
                 });
@@ -61,6 +62,7 @@ export const getAlbumesFavorites = async (request: FastifyRequest, reply: Fastif
             data: results
         })
     } catch (error) {
+        console.log('error:', error);
         reply.code(500).send({ error: 'Error al obtener datos.' });
     }
 };

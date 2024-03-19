@@ -11,6 +11,7 @@ const albumSchema = new Schema({
     artist: String,
     name: String,
     total_tracks: Number,
+    release_date: Date,
     favorite: Boolean,
     images: [imageSchema]
 }, {
