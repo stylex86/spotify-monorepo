@@ -8,6 +8,7 @@ const imageSchema = new Schema({
 
 const albumSchema = new Schema({
     idAlbum: String,
+    artist: String,
     name: String,
     total_tracks: Number,
     favorite: Boolean,

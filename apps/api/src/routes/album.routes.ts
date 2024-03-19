@@ -1,6 +1,6 @@
 import { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
 import { tokenMiddleware } from '../middleware/token.middleware';
-import { getAlbum, getAlbumFavorite, updateAlbumFavorite } from '../controllers/album.controller'
+import { getAlbumesBusqueda, getAlbumesFavorites, updateAlbumFavorite } from '../controllers/album.controller'
 
 interface QueryParameters {
     query: string;
@@ -12,10 +12,10 @@ interface QueryParameters {
 
 export default async function albumRoutes(fastify: FastifyInstance) {
     // metodos GET, POST, DELETE
-    fastify.get<{ Querystring: QueryParameters }>('/albumes', { preHandler: tokenMiddleware }, getAlbum);
+    fastify.get<{ Querystring: QueryParameters }>('/albumes', { preHandler: tokenMiddleware }, getAlbumesBusqueda);
     
     // Obtener Favoritos
-    fastify.get('/albumes-favorites', getAlbumFavorite);
+    fastify.get('/albumes-favorites', getAlbumesFavorites);
 
     // Actualización Favoritos
     fastify.put<{ Params: { id: string } }>('/albumes/:id', updateAlbumFavorite);
