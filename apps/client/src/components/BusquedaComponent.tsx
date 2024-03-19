@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchData } from '../hooks/fetchData';
+import { fetchData } from '../hooks/utilApi';
 
 import { MagnifyingGlassIcon, ArrowPathIcon } from '@heroicons/react/24/solid';
 import { AlbumComponent } from './AlbumComponent';

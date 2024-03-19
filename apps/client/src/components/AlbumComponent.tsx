@@ -1,8 +1,21 @@
+import { useState } from 'react';
+import { putData } from '../hooks/utilApi';
+
 import { PlusIcon, MinusIcon } from '@heroicons/react/24/solid';
 
 
 export const AlbumComponent = ({ item }: { item: any }) => {
     const lastImage = item.images[1];
+    const [isFavorite, setIsFavorite] = useState(item.favorite);
+
+    const setFavorito =  async () => {
+        try {
+            await putData('/albumes', item._id);
+            setIsFavorite(!isFavorite);
+        } catch (error) {
+            console.error('error put álbum:', error);
+        }
+    }
 
     return (
         <>
@@ -21,9 +34,12 @@ export const AlbumComponent = ({ item }: { item: any }) => {
                     </p>
                 </div>
 
-                <button className={`${item.favorite ? 'bg-red-500 hover:bg-red-600' : 'bg-orange-500 hover:bg-orange-600'} text-white font-bold py-2 px-4 w-full rounded flex items-center justify-center`}>
+                <button 
+                    className={`${isFavorite ? 'bg-red-500 hover:bg-red-600' : 'bg-orange-500 hover:bg-orange-600'} text-white font-bold py-2 px-4 w-full rounded flex items-center justify-center`}
+                    onClick={setFavorito}
+                >
                     {
-                        item.favorite ? (
+                        isFavorite ? (
                             <MinusIcon className="w-6" />
                         ) : (
                             <PlusIcon className="w-6" />
