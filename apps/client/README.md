@@ -1,30 +1,54 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# CLIENT V1.0 - SPOTIFY
 
-Currently, two official plugins are available:
+### Introducción
+Esta es una aplicación front-end desarrollada con react y typescript para mostrar los álbumes de artistas según la busqueda.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Funcionalidades
+- **Mostrar Favoritos:** muestra los álbumes que se agregaron al recargar la pagina.
 
-## Expanding the ESLint configuration
+- **Busqueda:** Posibilidad para buscar palabras por artista o álbumes
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Agregar Favoritos:** Funcion para agregar y/p quitar los álbumes favoritos.
 
-- Configure the top-level `parserOptions` property like this:
+### Tecnologías Utilizadas
+- **Vite**
+- **TypeScript**
+- **React**
+- **Tailwind CSS**
+- **HeroIcons**
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+## Ejecutar localmente
+
+Abrir proyecto
+
+```bash
+  cd spotify-monorepo/apps/client
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Instala las dependencias del proyecto
+
+```bash
+  npm install
+```
+
+Inicia el servidor
+
+```bash
+  npm run dev
+```
+
+## Docker Images
+Para crear la imagen de Docker, sigue estos pasos en la ruta `./apps/client`:
+
+#### Paso 1 - Creación de imagenes
+React Vite
+```bash
+docker build . -t spotify-monorepo-client:latest  
+```
+
+## Docker Contenedores
+Después de crear la imagen debes crear los contenedores:
+```bash
+docker run --name spotify-client --network spotify_network -p 5174:5173 -d spotify-monorepo-client:latest     
+```

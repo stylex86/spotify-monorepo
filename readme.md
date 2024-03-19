@@ -2,23 +2,37 @@
 
 Este proyecto se divide en dos partes principales: la API y el cliente. La API se encarga de interactuar con la API de Spotify para realizar diversas operaciones relacionadas con los álbumes, mientras que el cliente es una aplicación frontend desarrollada en React que consume la API y permite a los usuarios interactuar con la plataforma de Spotify.
 
+## Características
 
-## API
+- API Node JS - Fastify
+- Mongo DB 
+- Vite - React
+- Docker
 
-La API está desarrollada con TypeScript y Node.js utilizando el framework Fastify. Proporciona endpoints personalizados para obtener un token de acceso, buscar álbumes, guardar álbumes favoritos y eliminar álbumes guardados en la plataforma de Spotify.
+# Dockerización de la Aplicación
+
+Para dockerizar esta aplicación, puedes utilizar dos métodos:
+
+-  **Docker Compose**: Utiliza el archivo `docker-compose.yml`  que se enuentra en la raiz del proyecto y ejecuta las siguientes instrucciones. 
+
+```bash
+  docker-compose build
+```
+```bash
+  docker-compose up
+```
+
+-  **Dockerización Manual**: Si prefieres mayor control o necesitas personalización, puedes seguir las instrucciones en los README de las carpetas `apps/api` y `apps/client` para dockerizar la API y el cliente respectivamente.
 
 
-### Tecnologías Utilizadas
-- TypeScript
-- Node.js
-- Fastify
-- Spotify API
 
-## CLIENTE
+## Obtención del Código Fuente
 
-El cliente es una aplicación desarrollada con React que muestra la información obtenida de la API. Permite a los usuarios buscar álbumes, guardar favoritos y realizar otras acciones relacionadas.
+Clona este repositorio en tu máquina local
 
-### Tecnologías Utilizadas
-- TypeScript
-- React
-- Bootstrap
+```bash
+  git clone https://github.com/stylex86/spotify-monorepo.git
+```
+
+## Descarga las imágenes de `Docker HUB`
+

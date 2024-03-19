@@ -13,20 +13,13 @@ Esta es una aplicación desarrollada con Node.js y el framework Fastify, diseña
 - **TypeScript**
 - **Node.js**
 - **Fastify**
+- **Mongo DB**
 - **Spotify API**
-
-## Ejecutar localmente
-
-Clona este repositorio en tu máquina local
-
-```bash
-  git clone https://github.com/stylex86/spotify-monorepo.git
-```
 
 Abrir proyecto
 
 ```bash
-  cd spotify-monorepo
+  cd spotify-monorepo/apps/api
 ```
 
 Instala las dependencias del proyecto
@@ -45,17 +38,36 @@ Inicia el servidor
 
 Para ejecutar este proyecto es importante mantener el archivo `.env` con las variables de entorno necesarias:
 
-- `CLIENT_ID`: Esta variable se utiliza para enviar a la api spotify el id cliente.
+- `CLIENT_ID`
+- `CLIENT_SECRET`
+- `URL_SPOTIFY_TOKEN`
+- `URL_SPOTIFY`
+- `DB_CONNECT`
 
-- `CLIENT_SECRET`: Esta variable se utiliza para enviar la clave secreta junto con el id cliente.
+## Docker Images
+Para crear la imagen de Docker, sigue estos pasos en la ruta `./apps/api`:
 
-## Docker
-
-Para crear la imagen de Docker, sigue estos pasos:
+#### Paso 1 - Creación de imagenes
+API NodeJS
 ```bash
-docker build . -t node-fastify:latest
+docker build . -t spotify-monorepo-api:latest --target node-app
+```
+Mongo DB
+```bash
+docker build . -t spotify-monorepo-mongo:latest --target mongo-db     
+```
+#### Paso 2 - Creación de red network
+Una vez que hayas construido las imagenes de Docker, puedes crear el network para ser usado por todos los contenedores con el siguiente comando:
+```bash
+docker network create spotify_network  
 ```
 
-Una vez que hayas construido la imagen de Docker, puedes ejecutar el contenedor utilizando el siguiente comando:
+## Docker Contenedores
+Después de crear las imágenes debes crear los contenedores:
 ```bash
-docker run -p 3002:3000 --name spotify-api node-fastify:latest
+docker run --name spotify-db --network spotify_network -p 27018:27017 -d spotify-monorepo-mongo:latest    
+```
+
+```bash
+docker run --name spotify-api --network spotify_network -p 3002:3000 -d spotify-monorepo-client:latest
+```

@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
 
 mongoose
-  .connect('mongodb://localhost:27018/spotifydb')
+  .connect(`${process.env.DB_CONNECT}`)
   .then(() => console.log('Mongodb connected'))
   .catch((err: any) => console.log(err));

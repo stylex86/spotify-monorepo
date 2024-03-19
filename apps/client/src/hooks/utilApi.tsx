@@ -1,4 +1,4 @@
-const baseUrl = 'http://127.0.0.1:3000/api/v1';
+const baseUrl = 'http://127.0.0.1:3002/api/v1';
 
 
 export const fetchData = async (method: string, query?: string): Promise<any> => {

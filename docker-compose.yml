@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  client:
+    container_name: "spotify-client"
+    build:
+      context: ./apps/client
+    ports:
+      - "5174:5173"
+    links:
+      - api
+  api:
+    container_name: "spotify-api"
+    restart: always
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile
+      target: node-app
+    ports: 
+      - "3002:3000"
+    links:
+      - mongo
+  mongo:
+    container_name: "spotify-db"
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile
+      target: mongo-db
+    ports: 
+      - "27018:27017"
+  
