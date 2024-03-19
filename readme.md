@@ -35,4 +35,3 @@ Clona este repositorio en tu máquina local
 ```
 
 ## Descarga las imágenes de `Docker HUB`
-
