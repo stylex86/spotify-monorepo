@@ -1,20 +1,22 @@
 import { useState, useEffect } from 'react';
 import { fetchData } from '../hooks/fetchData';
 
-import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
+import { MagnifyingGlassIcon, ArrowPathIcon } from '@heroicons/react/24/solid';
 import { AlbumComponent } from './AlbumComponent';
 
 export const BusquedaComponent = () => {
   const [data, setData] = useState([]);
   const [InputBusqueda, setInputBusqueda] = useState('');
+  const [loading, setLoading] = useState(false);
   
   const realizarBusqueda = async () => {
     try {
         if (InputBusqueda.trim() === '') return; // validación para evitar que se realice una busqueda con valores vacios
-
+        setLoading(true);
         const responseData = await fetchData('/albumes', InputBusqueda);
         
         setData(responseData.data);
+        setLoading(false);
     } catch (error) {
         console.error('Error fetching data:', error);
     }
@@ -36,8 +38,10 @@ export const BusquedaComponent = () => {
   useEffect(() => {
     const fetchDataFavorites = async () => {
         try {
+            setLoading(true);
             const responseData = await fetchData('/albumes-favorites');
             setData(responseData.data);
+            setLoading(false);
             
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -58,7 +62,7 @@ export const BusquedaComponent = () => {
                   <div className="relative w-[800px]">
                     <input
                       type="text"
-                      placeholder="Buscar por Álbum o Artista"
+                      placeholder="Presiona enter para buscar por artista o álbum"
                       className="border w-2/3 border-gray-300 rounded-full pl-10 pr-24 py-2 focus:outline-none focus:border-green-500 transition-all duration-300"
                       onChange={inputOnchange}
                       onKeyDown={inputBusquedaKeyPress}
@@ -71,11 +75,18 @@ export const BusquedaComponent = () => {
                 <div className="list-none p-0 bg-[#191414]">
                   <div className='px-4 py-4'>
                     <h1 className='text-white text-2xl font-semibold'>Mostrar Álbumes</h1>
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-                        {data.map((item, index) => (
-                            <AlbumComponent key={index} item={item} />
-                         ))} 
-                    </div>
+                      {loading ? (
+                          <div className="flex items-center">
+                              <div className="mr-2">Cargando...</div>
+                              <ArrowPathIcon className="h-5 w-5 text-gray-400 animate-spin" />
+                          </div>
+                       ) : (
+                          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                            {data.map((item, index) => (
+                              <AlbumComponent key={index} item={item} />
+                            ))}
+                          </div>
+                      )}
                   </div>
                 </div>
               </div>
