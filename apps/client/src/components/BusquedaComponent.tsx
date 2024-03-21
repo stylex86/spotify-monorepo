@@ -61,6 +61,7 @@ export const BusquedaComponent = () => {
                 <div className="flex items-center px-4 py-4 bg-[#0e0e0e] space-x-2">
                   <div className="relative w-[800px]">
                     <input
+                      data-testid="TxtBusqueda"
                       type="text"
                       placeholder="Presiona enter para buscar por artista o álbum"
                       className="border w-2/3 border-gray-300 rounded-full pl-10 pr-24 py-2 focus:outline-none focus:border-green-500 transition-all duration-300"
