@@ -15,8 +15,20 @@ export const getAlbumesBusqueda = async (request: FastifyRequest<{ Querystring: 
 
         const access_token = request.cookies['access_token'];
         const { query, type, offset, limit } = request.query;
-        const queryString = `?query=${query}&type=album%2Cartist`;
 
+        if(query === undefined){
+            return reply.code(500).send({
+                message: 'no existe el campo query.'
+            });
+        }
+
+        if (query.trim() == '') {
+            return reply.code(500).send({
+                message: 'no se puede consultar álbumes sin palabras para realizar la busqueda.'
+            });
+        }
+
+        const queryString = `?query=${query}&type=album%2Cartist`;
         const response = await axiosGet(`/search${queryString}`, access_token);
         const albumes = response.albums.items;
         
@@ -57,15 +69,22 @@ export const getAlbumesFavorites = async (request: FastifyRequest, reply: Fastif
     try {
         const results = await Album.find({ favorite: true });
 
-        return reply.code(201).send({
+        if (results.length === 0) {
+            return reply.code(200).send({
+                message: 'No se encontraron datos favoritos.'
+            });
+        }
+
+        return reply.code(200).send({
             message: 'Datos obtenidos exitosamente.',
             data: results
-        })
+        });
     } catch (error) {
         console.log('error:', error);
         reply.code(500).send({ error: 'Error al obtener datos.' });
     }
 };
+
 
 export const updateAlbumFavorite = async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
     try {
